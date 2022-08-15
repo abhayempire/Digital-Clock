@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            color: #fff;
+            background-image: radial-gradient(ellipse at center, #0a2e38 0%, #000000 70%);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .main{
+            width: 100%;
+            color: rgb(8, 132, 189);
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+        }
+
+        h1{
+            
+            text-align: center;
+        }
+        .main .container{
+            position: absolute;
+            top: 40%;
+            border-radius: 20px;
+            /* border: 2px solid black; */
+            background-color: rgb(5, 19, 82);
+        }
+        
+        .container h2{
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container span{
+            font-size: 70px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <div class="main">
+        
+        <div class="container">
+            <h2>India Time</h2>
+            <span id="hours">12</span>
+            <span> : </span>
+            <span id="minutes">00</span>
+            <span> : </span>
+            <span id="seconds">00</span>
+            <span> &nbsp </span>
+            <span id="am-or-pm">AM</span>
+        </div>
+    </div>
+    <script>
+        
+        setInterval(updateTime, 1000);
+
+        function updateTime(){
+
+            let time = new Date();
+            let hours = time.getHours();
+            let minutes = time.getMinutes();
+            let seconds = time.getSeconds();
+            let am_or_pm = document.getElementById('am-or-pm').innerHTML;
+            
+            if(hours >= 12){
+                hours = hours - 12;
+                hours = "0"+hours;
+                am_or_pm = "PM";
+            }
+
+            if(seconds < 10){
+                
+                seconds = "0"+seconds;
+            }
+            if(minutes < 10){
+                minutes = "0"+minutes;
+            }
+
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+            document.getElementById('am-or-pm').innerHTML = am_or_pm;
+        }
+    </script>
+</body>
+</html>
